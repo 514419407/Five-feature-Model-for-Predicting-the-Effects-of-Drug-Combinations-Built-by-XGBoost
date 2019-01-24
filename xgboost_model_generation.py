@@ -3,13 +3,3 @@ dataset = pd.read_csv(r"Table S5_training.txt")
 X = np.array(dataset[columns_name])
 y = np.array(dataset['judge'])
 model = XGBClassifier()
-accuracy=[]
-for i in range(50):
-	cv = StratifiedKFold(y, n_folds=6,shuffle=True)
-	for j, (train, test) in enumerate(cv):
-		model.fit(train_x, train_y)
-		pred_y=model.predict(test_x)
-		predictions = [round(value) for value in pred_y]
-		accuracy.append(accuracy_score(test_y, predictions))
-
-sum(accuracy)/250
